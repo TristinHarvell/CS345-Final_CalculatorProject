@@ -1,0 +1,74 @@
+//
+//  CalculateMenuController.swift
+//  Calculator_Project
+//
+//  Created by Harvell, Tristin L on 3/26/19.
+//  Copyright © 2019 Harvell, Tristin L. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class CalculateMenuController: UIViewController {
+    
+    private var externalWindow: UIWindow?
+
+    let mainMenuLabel: UILabel = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //screen constants
+        let screenSize: CGSize = UIScreen.main.bounds.size
+        let centerX: CGFloat = screenSize.width / 2
+        let centerY: CGFloat = screenSize.height / 2
+        
+        //main menuLabel label -temporary
+        mainMenuLabel.text = "Main Menu"
+        mainMenuLabel.backgroundColor = UIColor.black
+        mainMenuLabel.textColor = UIColor.white
+        mainMenuLabel.textAlignment = NSTextAlignment.center
+        mainMenuLabel.frame = CGRect(x: centerX-75, y: centerY+100, width: 150, height: 50)
+        mainMenuLabel.isUserInteractionEnabled = true
+        mainMenuLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.openMainMenu(_:))))
+        self.view.addSubview(mainMenuLabel)
+        
+        self.view.backgroundColor = UIColor.lightGray
+    }
+    
+    @objc func openMainMenu(_ recognizer: UITapGestureRecognizer) {
+        presentingViewController?.dismiss(animated: true, completion: {
+            () -> Void in
+        })
+    }
+    
+    // Method to set up an external screen.
+    private func setupExternalScreen(screen: UIScreen) {
+        if externalWindow == nil {
+            externalWindow = UIWindow(frame: screen.bounds)
+            externalWindow!.rootViewController = ExternalScreenViewController(screen: screen)
+            externalWindow!.screen = screen
+            externalWindow!.isHidden = false
+        }
+    }
+    
+    // Method to handle the notification when an external screen connects.
+    @objc func externalScreenDidConnect(notification: NSNotification) {
+        guard let screen = notification.object as? UIScreen else {
+            return
+        }
+        setupExternalScreen(screen: screen)
+    }
+    
+    // Method to handle the notification when an external screen disconnects.
+    @objc func externalScreenDidDisconnect(notification: NSNotification) {
+        guard let _ = notification.object as? UIScreen else {
+            return
+        }
+        if let ew = externalWindow {
+            ew.isHidden = true
+            externalWindow = nil
+        }
+    }
+    
+}
