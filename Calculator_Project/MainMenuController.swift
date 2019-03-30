@@ -31,8 +31,8 @@ class MainMenuController: UIViewController {
         
         //calculator menu label
         calculatorLabel.text = "Calculator"
-        calculatorLabel.backgroundColor = UIColor.white
-        calculatorLabel.textColor = UIColor.gray
+        calculatorLabel.textColor = UIColor.white
+        calculatorLabel.font = UIFont.systemFont(ofSize: 70)
         calculatorLabel.textAlignment = NSTextAlignment.center
         calculatorLabel.frame = CGRect(x: buttonX, y: buttonHeight*0+30, width: buttonWidth, height: buttonHeight)
         self.view.addSubview(calculatorLabel)
