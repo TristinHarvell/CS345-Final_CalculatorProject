@@ -16,26 +16,39 @@ class FormulaMenuController: UIViewController {
     let mainMenuLabel: UILabel = UILabel()
     let addLabel: UILabel = UILabel()
     let removeLabel: UILabel = UILabel()
+    let formulaHeader: UILabel = UILabel()
     
     override func viewDidLoad() {
         
         //screen constants
         let screenSize: CGSize = UIScreen.main.bounds.size
-        //let centerX: CGFloat = screenSize.width / 2
-        //let centerY: CGFloat = screenSize.height / 2
+        let centerX: CGFloat = screenSize.width / 2
+        let centerY: CGFloat = screenSize.height / 2
+        
+        //assign the first tenth of the screen's height to the menu
+        let formulaHeaderSection: CGFloat = screenSize.height/10
         
         //button constants
-        let buttonHeight: CGFloat = screenSize.height/5
+        let buttonHeight: CGFloat = screenSize.height/7
         let buttonWidth: CGFloat = screenSize.width-10
         let buttonX: CGFloat = 5
+        
+        //previous data menu header
+        formulaHeader.attributedText = NSAttributedString(string: "Favorite Formulas", attributes:
+            [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        formulaHeader.font = UIFont.systemFont(ofSize: 22)
+        formulaHeader.textColor = UIColor.black
+        formulaHeader.textAlignment = NSTextAlignment.center
+        formulaHeader.frame = CGRect(x: centerX/2, y: formulaHeaderSection/2, width: centerX, height: formulaHeaderSection)
+        self.view.addSubview(formulaHeader)
 
         //add formula label
         addLabel.text = "Add"
         addLabel.backgroundColor = UIColor.black
         addLabel.textColor = UIColor.white
         addLabel.textAlignment = NSTextAlignment.center
-        addLabel.frame = CGRect(x: buttonX, y: buttonHeight*2-35, width: buttonWidth, height: buttonHeight)
-        addLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.openMainMenu(_:))))
+        addLabel.frame = CGRect(x: buttonX, y: buttonHeight*4-35, width: buttonWidth, height: buttonHeight)
+        addLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.addFormula(_:))))
         self.view.addSubview(addLabel)
         
         //remove formula label
@@ -43,9 +56,9 @@ class FormulaMenuController: UIViewController {
         removeLabel.backgroundColor = UIColor.black
         removeLabel.textColor = UIColor.white
         removeLabel.textAlignment = NSTextAlignment.center
-        removeLabel.frame = CGRect(x: buttonX, y: buttonHeight*3-30, width: buttonWidth, height: buttonHeight)
+        removeLabel.frame = CGRect(x: buttonX, y: buttonHeight*5-30, width: buttonWidth, height: buttonHeight)
         removeLabel.isUserInteractionEnabled = true
-        removeLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.openMainMenu(_:))))
+        removeLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.removeFormula(_:))))
         self.view.addSubview(removeLabel)
         
         //main menuLabel label
@@ -53,7 +66,7 @@ class FormulaMenuController: UIViewController {
         mainMenuLabel.backgroundColor = UIColor.black
         mainMenuLabel.textColor = UIColor.white
         mainMenuLabel.textAlignment = NSTextAlignment.center
-        mainMenuLabel.frame = CGRect(x: buttonX, y: buttonHeight*4-25, width: buttonWidth, height: buttonHeight)
+        mainMenuLabel.frame = CGRect(x: buttonX, y: buttonHeight*6-25, width: buttonWidth, height: buttonHeight)
         mainMenuLabel.isUserInteractionEnabled = true
         mainMenuLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.openMainMenu(_:))))
         self.view.addSubview(mainMenuLabel)
@@ -66,6 +79,12 @@ class FormulaMenuController: UIViewController {
         presentingViewController?.dismiss(animated: true, completion: {
             () -> Void in
         })
+    }
+    
+    @objc func addFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    
+    @objc func removeFormula(_ recognizer: UITapGestureRecognizer) {
     }
     
     // Method to set up an external screen.
