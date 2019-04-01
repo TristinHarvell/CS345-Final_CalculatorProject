@@ -89,12 +89,11 @@ class MainMenuController: UIViewController {
     }
 
     @objc func openFormulaMenu(_ recognizer: UITapGestureRecognizer) {
-        let fm: FormulaMenuController = FormulaMenuController()
+        let fm: ViewController = ViewController()
         fm.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         present(fm, animated: true, completion: {() -> Void in
             print("Formula view controller presented...")
         })
     }
-
 
 }

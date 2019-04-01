@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FormulaMenuController: UIViewController {
+class FormulaMenuController: UIViewController{
     
     private var externalWindow: UIWindow?
     
@@ -17,13 +17,21 @@ class FormulaMenuController: UIViewController {
     let addLabel: UILabel = UILabel()
     let removeLabel: UILabel = UILabel()
     let formulaHeader: UILabel = UILabel()
+    let discount: UILabel = UILabel()
+    let discount2: UILabel = UILabel()
+    let interest: UILabel = UILabel()
+    let interest2: UILabel = UILabel()
+    let tips: UILabel = UILabel()
+    let tips2: UILabel = UILabel()
+    let salesTax: UILabel = UILabel()
+    let salesTax2: UILabel = UILabel()
     
     override func viewDidLoad() {
         
         //screen constants
         let screenSize: CGSize = UIScreen.main.bounds.size
         let centerX: CGFloat = screenSize.width / 2
-        let centerY: CGFloat = screenSize.height / 2
+        let _: CGFloat = screenSize.height / 2
         
         //assign the first tenth of the screen's height to the menu
         let formulaHeaderSection: CGFloat = screenSize.height/10
@@ -63,7 +71,7 @@ class FormulaMenuController: UIViewController {
         
         //main menuLabel label
         mainMenuLabel.text = "Main Menu"
-        mainMenuLabel.backgroundColor = UIColor.black
+        mainMenuLabel.backgroundColor = UIColor.darkGray
         mainMenuLabel.textColor = UIColor.white
         mainMenuLabel.textAlignment = NSTextAlignment.center
         mainMenuLabel.frame = CGRect(x: buttonX, y: buttonHeight*6-25, width: buttonWidth, height: buttonHeight)
@@ -73,6 +81,73 @@ class FormulaMenuController: UIViewController {
         
         self.view.backgroundColor = UIColor.lightGray
         
+        
+        discount.text = "Discount Formula"
+        discount.backgroundColor = UIColor.black
+        discount.textColor = UIColor.white
+        discount.textAlignment = NSTextAlignment.center
+        discount.frame = CGRect(x: buttonX, y: buttonHeight*1-20, width: buttonWidth, height: 20)
+        discount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.discountFormula(_:))))
+        self.view.addSubview(discount)
+        
+        discount2.text = "List price * Discount Rate"
+        discount2.backgroundColor = UIColor.clear
+        discount2.textColor = UIColor.red
+        discount2.textAlignment = NSTextAlignment.center
+        discount2.frame = CGRect(x: buttonX, y: buttonHeight*1.25-20, width: buttonWidth, height: 20)
+        discount2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.discountFormula2(_:))))
+        self.view.addSubview(discount2)
+        
+        interest.text = "Interest Formula"
+        interest.backgroundColor = UIColor.black
+        interest.textColor = UIColor.white
+        interest.textAlignment = NSTextAlignment.center
+        interest.frame = CGRect(x: buttonX, y: buttonHeight*1.5-20, width: buttonWidth, height: 25)
+        interest.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.interestFormula(_:))))
+        self.view.addSubview(interest)
+        
+        interest2.text = "Principle * Rate * Time"
+        interest2.backgroundColor = UIColor.clear
+        interest2.textColor = UIColor.red
+        interest2.textAlignment = NSTextAlignment.center
+        interest2.frame = CGRect(x: buttonX, y: buttonHeight*1.75-20, width: buttonWidth, height: 25)
+        interest2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.interestFormula2(_:))))
+        self.view.addSubview(interest2)
+        
+        tips.text = "Tips Formula"
+        tips.backgroundColor = UIColor.black
+        tips.textColor = UIColor.white
+        tips.textAlignment = NSTextAlignment.center
+        tips.frame = CGRect(x: buttonX, y: buttonHeight*2-20, width: buttonWidth, height: 25)
+        tips.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.tipsFormula(_:))))
+        self.view.addSubview(tips)
+        
+        tips2.text = "Meal Cost * Tip Percentage Rate"
+        tips2.backgroundColor = UIColor.clear
+        tips2.textColor = UIColor.red
+        tips2.textAlignment = NSTextAlignment.center
+        tips2.frame = CGRect(x: buttonX, y: buttonHeight*2.25-20, width: buttonWidth, height: 25)
+        tips2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.tipsFormula2(_:))))
+        self.view.addSubview(tips2)
+        
+        salesTax.text = "Sales Tax Formula"
+        salesTax.backgroundColor = UIColor.black
+        salesTax.textColor = UIColor.white
+        salesTax.textAlignment = NSTextAlignment.center
+        salesTax.frame = CGRect(x: buttonX, y: buttonHeight*2.5-20, width: buttonWidth, height: 25)
+        salesTax.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.salesTaxFormula(_:))))
+        self.view.addSubview(salesTax)
+        
+        salesTax2.text = "Price Of Item * Tax Rate"
+        salesTax2.backgroundColor = UIColor.clear
+        salesTax2.textColor = UIColor.red
+        salesTax2.textAlignment = NSTextAlignment.center
+        salesTax2.frame = CGRect(x: buttonX, y: buttonHeight*2.75-20, width: buttonWidth, height: 25)
+        salesTax2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.salesTaxFormula2(_:))))
+        self.view.addSubview(salesTax2)
+        
+        
+        
     }
     
     @objc func openMainMenu(_ recognizer: UITapGestureRecognizer) {
@@ -81,10 +156,27 @@ class FormulaMenuController: UIViewController {
         })
     }
     
+    
     @objc func addFormula(_ recognizer: UITapGestureRecognizer) {
     }
     
     @objc func removeFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func discountFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func discountFormula2(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func interestFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func interestFormula2(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func tipsFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func tipsFormula2(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func salesTaxFormula(_ recognizer: UITapGestureRecognizer) {
+    }
+    @objc func salesTaxFormula2(_ recognizer: UITapGestureRecognizer) {
     }
     
     // Method to set up an external screen.
@@ -115,4 +207,6 @@ class FormulaMenuController: UIViewController {
             externalWindow = nil
         }
     }
+    
+    
 }
