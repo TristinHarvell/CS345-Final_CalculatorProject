@@ -44,3 +44,6 @@ i.	Used to navigate to different interfaces
 ii.	Used to choose the numbers that are desired for input
 b.	Slider
 c.	Picker
+
+![alt text](https://github.com/TristinHarvell/CS345-Final_CalculatorProject/blob/master/design1.jpg)
+![alt text](https://github.com/TristinHarvell/CS345-Final_CalculatorProject/blob/master/design2.jpg)
