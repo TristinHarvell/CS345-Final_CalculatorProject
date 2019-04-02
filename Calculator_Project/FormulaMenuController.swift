@@ -56,6 +56,8 @@ class FormulaMenuController: UIViewController{
         addLabel.textColor = UIColor.white
         addLabel.textAlignment = NSTextAlignment.center
         addLabel.frame = CGRect(x: buttonX, y: buttonHeight*4-35, width: buttonWidth, height: buttonHeight)
+        addLabel.layer.cornerRadius = 10.0
+        addLabel.clipsToBounds = true
         addLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.addFormula(_:))))
         self.view.addSubview(addLabel)
         
@@ -65,6 +67,8 @@ class FormulaMenuController: UIViewController{
         removeLabel.textColor = UIColor.white
         removeLabel.textAlignment = NSTextAlignment.center
         removeLabel.frame = CGRect(x: buttonX, y: buttonHeight*5-30, width: buttonWidth, height: buttonHeight)
+        removeLabel.layer.cornerRadius = 10.0
+        removeLabel.clipsToBounds = true
         removeLabel.isUserInteractionEnabled = true
         removeLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.removeFormula(_:))))
         self.view.addSubview(removeLabel)
@@ -75,6 +79,8 @@ class FormulaMenuController: UIViewController{
         mainMenuLabel.textColor = UIColor.white
         mainMenuLabel.textAlignment = NSTextAlignment.center
         mainMenuLabel.frame = CGRect(x: buttonX, y: buttonHeight*6-25, width: buttonWidth, height: buttonHeight)
+        mainMenuLabel.layer.cornerRadius = 10.0
+        mainMenuLabel.clipsToBounds = true
         mainMenuLabel.isUserInteractionEnabled = true
         mainMenuLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.openMainMenu(_:))))
         self.view.addSubview(mainMenuLabel)

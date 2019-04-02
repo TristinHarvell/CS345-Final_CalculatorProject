@@ -54,6 +54,8 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         mainMenuLabel.textAlignment = NSTextAlignment.center
         mainMenuLabel.frame = CGRect(x: buttonX, y: buttonHeight*6-25, width: buttonWidth, height: buttonHeight)
         mainMenuLabel.isUserInteractionEnabled = true
+        mainMenuLabel.layer.cornerRadius = 10.0
+        mainMenuLabel.clipsToBounds = true
         mainMenuLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormulaMenuController.openMainMenu(_:))))
         self.view.addSubview(mainMenuLabel)
         

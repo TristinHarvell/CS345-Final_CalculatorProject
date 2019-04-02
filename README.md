@@ -1,28 +1,28 @@
 # CS345-Final_CalculatorProject
 
 **Short description:** A small calculator application. The calculator is intended to minimize the number of buttons, while also incorporating gestures for various functions, such as:
--	[ ] Equals: swipe up
--	[ ] Add: swipe right
--	[ ] Subtract swipe left
--	[ ] Clear: swipe down
+-	[x] Equals: swipe up
+-	[x] Add: swipe right
+-	[x] Subtract swipe left
+-	[x] Clear: swipe down
 
 There will also be a “history” display option that allows the user to view previously entered calculations, as usually seen with standard graphing calculators.
 
 **How to fulfill 9 criteria:**
 1.	Images, including an app icon:
--	[ ] A calculator app icon
--	[ ] A calculator logo incorporated within the main menu
+-	[x] A calculator app icon
+-	[x] A calculator logo incorporated within the main menu
 2.	A minimum of 3 interfaces (which are controlled by separate view controllers):
--	[ ] A basic main menu interface that is displayed when the user opens the app. This will display the option to either perform calculations or to view previous calculation data.
--	[ ] A calculation display that will show the output, the buttons for the numbers, and a little “touchpad” area that allows the user to interact with by using gestures to perform the calculation functions.
--	[ ] An interface that shows the previous calculations that have been performed. There is the option to clear the data, otherwise the data should be persistent when the app is terminated.
--	[ ] An interface that allows one to view and add common formulas. This is also persistent.
+-	[x] A basic main menu interface that is displayed when the user opens the app. This will display the option to either perform calculations or to view previous calculation data.
+-	[x] A calculation display that will show the output, the buttons for the numbers, and a little “touchpad” area that allows the user to interact with by using gestures to perform the calculation functions.
+-	[x] An interface that shows the previous calculations that have been performed. There is the option to clear the data, otherwise the data should be persistent when the app is terminated.
+-	[x] An interface that allows one to view and add common formulas. This is also persistent.
 3.	At least two different gestures:
--	[ ] Equals: swipe up
--	[ ] Add: swipe right
--	[ ] Subtract swipe left
--	[ ] Clear: swipe down
--	[ ] Tap: return back to the main menu
+-	[x] Equals: swipe up
+-	[x] Add: swipe right
+-	[x] Subtract swipe left
+-	[x] Clear: swipe down
+-	[x] Tap: return back to the main menu
 4.	At least one animation:
 -	[ ] Sliding animations that are utilized when switching to different interfaces
 5.	At least one alert:
@@ -31,9 +31,9 @@ There will also be a “history” display option that allows the user to view p
 -	[ ] When adding formulas, an alert pops up to notify the user to enter the formula within a text-field.
 7.	You must save some part of the state of your app when the app is terminated and restore it the next time the app is launched:
 -	[ ] Previous calculation data will be saved
--	[ ] Common formulas will be saved
+-	[x] Common formulas will be saved
 8.	You must have at least one of the following views:
--	[ ] Table view
+-	[x] Table view
 -	[ ] Scroll view
       -	[ ] The formula interface will be pre-populated with enough formulas to allow a scroll view to work.
 9.	You must have at least one of the following views:

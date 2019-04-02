@@ -13,7 +13,7 @@ class CalculateMenuController: UIViewController {
     
     private var externalWindow: UIWindow?
     
-    let outputAreaLabel: UILabel = UILabel()
+    let calculatorDisplay: UILabel = UILabel()
     let zeroButton: UILabel = UILabel()
     let oneButton: UILabel = UILabel()
     let twoButton: UILabel = UILabel()
@@ -26,15 +26,19 @@ class CalculateMenuController: UIViewController {
     let nineButton: UILabel = UILabel()
     let gestureAreaLabel: UILabel = UILabel()
     
-    var previousText: String = ""
-    var answer: Double = 0
+    var isTypingNumber = false
+    var firstNumber: Int? = 0
+    var secondNumber = 0
+    var operation = ""
+    
+    public var historyList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //screen constants
         let screenSize: CGSize = UIScreen.main.bounds.size
-
+        
         //divide screen height into four sections
         let heightSection: CGFloat = screenSize.height/4
         
@@ -45,13 +49,15 @@ class CalculateMenuController: UIViewController {
         let borderSize: CGFloat = 2.0
         
         //output area
-        outputAreaLabel.text = ""
-        outputAreaLabel.font = UIFont.systemFont(ofSize: 35)
-        outputAreaLabel.textColor = UIColor.black
-        outputAreaLabel.backgroundColor = UIColor.white
-        outputAreaLabel.textAlignment = NSTextAlignment.center
-        outputAreaLabel.frame = CGRect(x: widthSection*1, y: heightSection*0, width: screenSize.width-widthSection, height: heightSection)
-        self.view.addSubview(outputAreaLabel)
+        calculatorDisplay.text = ""
+        calculatorDisplay.font = UIFont.systemFont(ofSize: 35)
+        calculatorDisplay.textColor = UIColor.black
+        calculatorDisplay.backgroundColor = UIColor.white
+        calculatorDisplay.textAlignment = NSTextAlignment.center
+        calculatorDisplay.frame = CGRect(x: widthSection*1, y: heightSection*0, width: screenSize.width-widthSection, height: heightSection)
+        calculatorDisplay.layer.cornerRadius = 10.0
+        calculatorDisplay.clipsToBounds = true
+        self.view.addSubview(calculatorDisplay)
         
         //0 button area
         zeroButton.text = "0"
@@ -62,6 +68,8 @@ class CalculateMenuController: UIViewController {
         zeroButton.textAlignment = NSTextAlignment.center
         zeroButton.frame = CGRect(x: widthSection*0, y: widthSection*0, width: screenSize.width/3, height: heightSection*1)
         zeroButton.isUserInteractionEnabled = true
+        zeroButton.layer.cornerRadius = 10.0
+        zeroButton.clipsToBounds = true
         zeroButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushZero(_:))))
         self.view.addSubview(zeroButton)
         
@@ -74,20 +82,22 @@ class CalculateMenuController: UIViewController {
         oneButton.textAlignment = NSTextAlignment.center
         oneButton.frame = CGRect(x: widthSection*0, y: heightSection*1, width: screenSize.width/3, height: heightSection*2/3)
         oneButton.isUserInteractionEnabled = true
+        oneButton.layer.cornerRadius = 10.0
+        oneButton.clipsToBounds = true
         oneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushOne(_:))))
         self.view.addSubview(oneButton)
         
         //2 button area
         twoButton.text = "2"
         twoButton.textColor = UIColor.white
-        twoButton
-            
-            .layer.borderColor = UIColor.black.cgColor
+        twoButton.layer.borderColor = UIColor.black.cgColor
         twoButton.layer.borderWidth = borderSize
         twoButton.backgroundColor = UIColor.orange
         twoButton.textAlignment = NSTextAlignment.center
         twoButton.frame = CGRect(x: widthSection*1, y: heightSection*1, width: screenSize.width/3, height: heightSection*2/3)
         twoButton.isUserInteractionEnabled = true
+        twoButton.layer.cornerRadius = 10.0
+        twoButton.clipsToBounds = true
         twoButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushTwo(_:))))
         self.view.addSubview(twoButton)
         
@@ -100,6 +110,8 @@ class CalculateMenuController: UIViewController {
         threeButton.textAlignment = NSTextAlignment.center
         threeButton.frame = CGRect(x: widthSection*2, y: heightSection*1, width: screenSize.width/3, height: heightSection*2/3)
         threeButton.isUserInteractionEnabled = true
+        threeButton.layer.cornerRadius = 10.0
+        threeButton.clipsToBounds = true
         threeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushThree(_:))))
         self.view.addSubview(threeButton)
         
@@ -112,6 +124,8 @@ class CalculateMenuController: UIViewController {
         fourButton.textAlignment = NSTextAlignment.center
         fourButton.frame = CGRect(x: widthSection*0, y: heightSection*5/3, width: screenSize.width/3, height: heightSection*2/3)
         fourButton.isUserInteractionEnabled = true
+        fourButton.layer.cornerRadius = 10.0
+        fourButton.clipsToBounds = true
         fourButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushFour(_:))))
         self.view.addSubview(fourButton)
         
@@ -124,6 +138,8 @@ class CalculateMenuController: UIViewController {
         fiveButton.textAlignment = NSTextAlignment.center
         fiveButton.frame = CGRect(x: widthSection*1, y: heightSection*5/3, width: screenSize.width/3, height: heightSection*2/3)
         fiveButton.isUserInteractionEnabled = true
+        fiveButton.layer.cornerRadius = 10.0
+        fiveButton.clipsToBounds = true
         fiveButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushFive(_:))))
         self.view.addSubview(fiveButton)
         
@@ -136,6 +152,8 @@ class CalculateMenuController: UIViewController {
         sixButton.textAlignment = NSTextAlignment.center
         sixButton.frame = CGRect(x: widthSection*2, y: heightSection*5/3, width: screenSize.width/3, height: heightSection*2/3)
         sixButton.isUserInteractionEnabled = true
+        sixButton.layer.cornerRadius = 10.0
+        sixButton.clipsToBounds = true
         sixButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushSix(_:))))
         self.view.addSubview(sixButton)
         
@@ -148,6 +166,8 @@ class CalculateMenuController: UIViewController {
         sevenButton.textAlignment = NSTextAlignment.center
         sevenButton.frame = CGRect(x: widthSection*0, y: heightSection*7/3, width: screenSize.width/3, height: heightSection*2/3)
         sevenButton.isUserInteractionEnabled = true
+        sevenButton.layer.cornerRadius = 10.0
+        sevenButton.clipsToBounds = true
         sevenButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushSeven(_:))))
         self.view.addSubview(sevenButton)
         
@@ -160,6 +180,8 @@ class CalculateMenuController: UIViewController {
         eightButton.textAlignment = NSTextAlignment.center
         eightButton.frame = CGRect(x: widthSection*1, y: heightSection*7/3, width: screenSize.width/3, height: heightSection*2/3)
         eightButton.isUserInteractionEnabled = true
+        eightButton.layer.cornerRadius = 10.0
+        eightButton.clipsToBounds = true
         eightButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushEight(_:))))
         self.view.addSubview(eightButton)
         
@@ -172,11 +194,15 @@ class CalculateMenuController: UIViewController {
         nineButton.textAlignment = NSTextAlignment.center
         nineButton.frame = CGRect(x: widthSection*2, y: heightSection*7/3, width: screenSize.width/3, height: heightSection*2/3)
         nineButton.isUserInteractionEnabled = true
+        nineButton.layer.cornerRadius = 10.0
+        nineButton.clipsToBounds = true
         nineButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CalculateMenuController.pushNine(_:))))
         self.view.addSubview(nineButton)
         
         //gesture area
         gestureAreaLabel.backgroundColor = UIColor.black
+        gestureAreaLabel.text = ""
+        gestureAreaLabel.textColor = UIColor.white
         gestureAreaLabel.textAlignment = NSTextAlignment.center
         gestureAreaLabel.frame = CGRect(x: 0, y: heightSection*3, width: screenSize.width, height: heightSection)
         gestureAreaLabel.isUserInteractionEnabled = true
@@ -204,77 +230,130 @@ class CalculateMenuController: UIViewController {
         gestureAreaLabel.addGestureRecognizer(swipeUp)
         
         //set background color
-        self.view.backgroundColor = UIColor.lightGray
+        self.view.backgroundColor = UIColor.black
     }
     
     @objc func pushZero(_ recognizer: UITapGestureRecognizer) {
-            self.previousText = self.outputAreaLabel.text!
-            self.outputAreaLabel.text = previousText + "0"
+        numberTapped(sender: zeroButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushOne(_ recognizer: UITapGestureRecognizer) {
-            self.previousText = self.outputAreaLabel.text!
-            self.outputAreaLabel.text = previousText + "1"
+        numberTapped(sender: oneButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushTwo(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "2"
+        numberTapped(sender: twoButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushThree(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "3"
+        numberTapped(sender: threeButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushFour(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "4"
+        numberTapped(sender: fourButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushFive(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "5"
+        numberTapped(sender: fiveButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushSix(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "6"
+        numberTapped(sender: sixButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushSeven(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "7"
+        numberTapped(sender: sevenButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushEight(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "8"
+        numberTapped(sender: eightButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func pushNine(_ recognizer: UITapGestureRecognizer) {
-        self.previousText = self.outputAreaLabel.text!
-        self.outputAreaLabel.text = previousText + "9"
+        numberTapped(sender: nineButton)
+        gestureAreaLabel.text = ""
     }
     
     @objc func add(_ recognizer: UITapGestureRecognizer) {
-        self.outputAreaLabel.text = "<add>"
+        calculationTapped(symbol: "+")
+        gestureText(symbol: "+")
     }
     
-    @objc func subtract(_ recognizer: UITapGestureRecognizer) {        self.outputAreaLabel.text = "<subtract>"
+    @objc func subtract(_ recognizer: UITapGestureRecognizer) {
+        calculationTapped(symbol: "-")
+        gestureText(symbol: "-")
     }
     
     @objc func clear(_ recognizer: UITapGestureRecognizer) {
-        self.outputAreaLabel.text = "<clear>"
+        calculatorDisplay.text = "0"
+        firstNumber = 0
+        secondNumber = 0
+        operation = ""
+        isTypingNumber = false
+        gestureText(symbol: "clear")
     }
     
-    @objc func equals(_ recognizer: UITapGestureRecognizer) {        self.outputAreaLabel.text = "<equals>"
+    @objc func equals(_ recognizer: UITapGestureRecognizer) {
+        equalsTapped()
+        gestureText(symbol: "=")
+    }
+    
+    @IBAction func numberTapped(sender: UILabel) {
+        let number: String = sender.text!
+        
+        if isTypingNumber {
+            calculatorDisplay.text = calculatorDisplay.text! + number
+        } else {
+            calculatorDisplay.text = number
+            isTypingNumber = true
+        }
+    }
+    
+    func calculationTapped(symbol: String) {
+        isTypingNumber = false
+        firstNumber = Int(calculatorDisplay.text!)
+        operation = symbol
+    }
+    
+    @IBAction func equalsTapped() {
+        isTypingNumber = false
+        var result = 0
+        secondNumber = Int(calculatorDisplay.text!)!
+        
+        if operation == "+" {
+            result = firstNumber! + secondNumber
+        } else if operation == "-" {
+            result = firstNumber! - secondNumber
+        }
+        
+        calculatorDisplay.text = "\(result)"
+        
+        //save results in history
+        historyList.append("\(String(describing: firstNumber)))\(operation)\(secondNumber)=\(result)")
+        print(historyList)
+    }
+    
+    @objc func gestureText(symbol: String) {
+        self.gestureAreaLabel.text = symbol
     }
     
     @objc func openMainMenu(_ recognizer: UITapGestureRecognizer) {
         presentingViewController?.dismiss(animated: true, completion: {
             () -> Void in
         })
+    }
+    
+    public func getHistoryResults() -> [String] {
+        return historyList
     }
     
     // Method to set up an external screen.

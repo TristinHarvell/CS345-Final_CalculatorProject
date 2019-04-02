@@ -65,16 +65,16 @@
 			isa = PBXGroup;
 			children = (
 				389EDF4C224B144200618DBB /* MainMenuController.swift */,
-				389EDF3A224B135600618DBB /* AppDelegate.swift */,
-				389EDF3C224B135600618DBB /* ViewController.swift */,
-				389EDF3E224B135600618DBB /* Main.storyboard */,
-				389EDF41224B135800618DBB /* Assets.xcassets */,
-				389EDF43224B135800618DBB /* LaunchScreen.storyboard */,
-				389EDF46224B135800618DBB /* Info.plist */,
 				389EDF4E224B14F200618DBB /* CalculateMenuController.swift */,
 				389EDF50224B156800618DBB /* HistoryMenuController.swift */,
 				389EDF52224B182900618DBB /* FormulaMenuController.swift */,
+				389EDF3C224B135600618DBB /* ViewController.swift */,
+				389EDF41224B135800618DBB /* Assets.xcassets */,
 				389EDF54224B1F7300618DBB /* ExternalScreenViewController.swift */,
+				389EDF3A224B135600618DBB /* AppDelegate.swift */,
+				389EDF3E224B135600618DBB /* Main.storyboard */,
+				389EDF43224B135800618DBB /* LaunchScreen.storyboard */,
+				389EDF46224B135800618DBB /* Info.plist */,
 			);
 			path = Calculator_Project;
 			sourceTree = "<group>";
