@@ -15,7 +15,6 @@
 		389EDF4D224B144200618DBB /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EDF4C224B144200618DBB /* MainMenuController.swift */; };
 		389EDF4F224B14F200618DBB /* CalculateMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EDF4E224B14F200618DBB /* CalculateMenuController.swift */; };
 		389EDF51224B156800618DBB /* HistoryMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EDF50224B156800618DBB /* HistoryMenuController.swift */; };
-		389EDF53224B182900618DBB /* FormulaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EDF52224B182900618DBB /* FormulaMenuController.swift */; };
 		389EDF55224B1F7300618DBB /* ExternalScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EDF54224B1F7300618DBB /* ExternalScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +29,6 @@
 		389EDF4C224B144200618DBB /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		389EDF4E224B14F200618DBB /* CalculateMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateMenuController.swift; sourceTree = "<group>"; };
 		389EDF50224B156800618DBB /* HistoryMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMenuController.swift; sourceTree = "<group>"; };
-		389EDF52224B182900618DBB /* FormulaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaMenuController.swift; sourceTree = "<group>"; };
 		389EDF54224B1F7300618DBB /* ExternalScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +65,6 @@
 				389EDF4C224B144200618DBB /* MainMenuController.swift */,
 				389EDF4E224B14F200618DBB /* CalculateMenuController.swift */,
 				389EDF50224B156800618DBB /* HistoryMenuController.swift */,
-				389EDF52224B182900618DBB /* FormulaMenuController.swift */,
 				389EDF3C224B135600618DBB /* ViewController.swift */,
 				389EDF41224B135800618DBB /* Assets.xcassets */,
 				389EDF54224B1F7300618DBB /* ExternalScreenViewController.swift */,
@@ -156,7 +153,6 @@
 				389EDF3B224B135600618DBB /* AppDelegate.swift in Sources */,
 				389EDF4D224B144200618DBB /* MainMenuController.swift in Sources */,
 				389EDF4F224B14F200618DBB /* CalculateMenuController.swift in Sources */,
-				389EDF53224B182900618DBB /* FormulaMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
